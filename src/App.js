@@ -1,8 +1,12 @@
 import React from 'react'
+import Validate1 from "./components/Validate1.js"
 
 const App = () => {
   return (
-    <div>App</div>
+    <div>
+     <Validate1/>
+
+    </div>
   )
 }
 
