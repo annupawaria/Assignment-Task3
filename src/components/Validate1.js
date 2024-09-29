@@ -14,7 +14,9 @@ const[errorMessage,setErrorMessage]=useState("")
         const value=e.target.value
         setEmail(value)
 if(!value.includes("@")|| value.includes(".")){
-    setErrorMessage
+    setErrorMessage("erite all detail")
+}else{
+    setEmail("")
 }
 
 
