@@ -1,38 +1,21 @@
-// import { useState } from "react"
-import React,{useState} from 'react'
-
-
-
-
+import React, { useEffect, useState } from 'react'
 
 const Validate1 = () => {
-    const[email,setEmail]=useState("")
-const[errorMessage,setErrorMessage]=useState("")
 
-
-    const changeHandler=(e)=>{
-        const value=e.target.value
-        setEmail(value)
-if(!value.includes("@")|| value.includes(".")){
-    setErrorMessage("erite all detail")
-}else{
-    setEmail("")
-}
-
-
-    
-    }
-
+  const [currentTime,setCurrentTime]=useState(new Date())
+useEffect(()=>{
+  const timer=setInterval(()=>{
+    setCurrentTime(new Date())
+  },1000)
+  return () => clearInterval(timer);
+},[])
 
   return (
     <div>
-        <form>
-            <label>
-                Email:<input type='Email' placeholder='write your email' value={email}
-                onChange={changeHandler}/>
-            </label>
-            {errorMessage && <p style={{color:"red"}}>{errorMessage}</p>}
-        </form>
+<p>real ttime and dare</p>
+<h1>{currentTime.toLocaleDateString()}{currentTime.toLocaleTimeString()}</h1>
+
+      
     </div>
   )
 }
