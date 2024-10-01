@@ -1,20 +1,49 @@
-import React, { useState } from 'react'
-import "../App.css"
-// import ThemeToggle from './validate'
+import React, { useState } from "react";
 
-const Validate1 = () => {
-  const[isDarkMode,setIsDarkMode]=useState(false);
+const SearchFilter = () => {
+  // Example dataset (could be a large list of items)
+  const items = [
+    "Apple",
+    "Banana",
+    "Cherry",
+    "Date",
+    "Eggfruit",
+    "Fig",
+    "Grapes",
+    "Honeydew",
+  ];
 
-  function ThemeToggle(){
-setIsDarkMode(!isDarkMode)
-  }
- 
+  // State to track the user's search query
+  const [searchTerm, setSearchTerm] = useState("");
+
+  // Filter the items based on the search term
+  const filteredItems = items.filter((item) =>
+    item.toLowerCase().includes(searchTerm.toLowerCase()) // Case-insensitive search
+  );
+
   return (
-    <div className= {isDarkMode?"dark":"light"} >
-      <h1>{isDarkMode?"dark":"light"}</h1>
-      <button onClick={ThemeToggle}>{isDarkMode?"lightmode":"darkmode"}</button>
-    </div>
-  )
-}
+    <div>
+      <h2>Search Items</h2>
+      {/* Search input */}
+      <input
+        type="text"
+        placeholder="Search for an item..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)} // Update search term as user types
+      />
 
-export default Validate1
+      {/* Display filtered items */}
+      <ul>
+        {filteredItems.length > 0 ? (
+          filteredItems.map((item, index) => (
+            <li key={index}>{item}</li>
+          ))
+        ) : (
+          <li>No items found</li>
+        )}
+      </ul>
+    </div>
+  );
+};
+
+export default SearchFilter;
