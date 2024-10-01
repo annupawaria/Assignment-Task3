@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-const SearchFilter = () => {
-  // Example dataset (could be a large list of items)
+const SearchFilterWithDebounce = () => {
   const items = [
     "Apple",
     "Banana",
@@ -13,31 +12,36 @@ const SearchFilter = () => {
     "Honeydew",
   ];
 
-  // State to track the user's search query
   const [searchTerm, setSearchTerm] = useState("");
+  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
 
-  // Filter the items based on the search term
+  // Debounce the search term so filtering doesn't happen on every keystroke
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedSearchTerm(searchTerm);
+    }, 300); // Wait for 300ms before applying the filter
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [searchTerm]);
+
   const filteredItems = items.filter((item) =>
-    item.toLowerCase().includes(searchTerm.toLowerCase()) // Case-insensitive search
+    item.toLowerCase().includes(debouncedSearchTerm.toLowerCase())
   );
 
   return (
     <div>
-      <h2>Search Items</h2>
-      {/* Search input */}
+      <h2>Search Items with Debounce</h2>
       <input
         type="text"
         placeholder="Search for an item..."
         value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)} // Update search term as user types
+        onChange={(e) => setSearchTerm(e.target.value)}
       />
-
-      {/* Display filtered items */}
       <ul>
         {filteredItems.length > 0 ? (
-          filteredItems.map((item, index) => (
-            <li key={index}>{item}</li>
-          ))
+          filteredItems.map((item, index) => <li key={index}>{item}</li>)
         ) : (
           <li>No items found</li>
         )}
@@ -46,4 +50,4 @@ const SearchFilter = () => {
   );
 };
 
-export default SearchFilter;
+export default SearchFilterWithDebounce;

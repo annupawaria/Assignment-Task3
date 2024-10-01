@@ -1,38 +1,23 @@
 import React, { useState } from "react";
+import "../App.css"; // We'll assume you have some basic CSS for light and dark modes.
 
-function EmailForm() {
-  const [email, setEmail] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+const ThemeToggle = () => {
+  const [isDarkMode, setIsDarkMode] = useState(false); // State to track current theme
 
-  const handleChange = (e) => {
-    const value = e.target.value;
-    setEmail(value);
-
-    // Simple email validation (checks if the value contains "@" and ".")
-    if (!value.includes("@") || !value.includes(".")) {
-      setErrorMessage("Invalid email address");
-    } else {
-      setErrorMessage("");
-    }
+  // Toggle the theme between light and dark
+  const toggleTheme = () => {
+    setIsDarkMode(!isDarkMode); // Switch between true (dark) and false (light)
   };
 
   return (
-    <div>
-      <form>
-        <label>
-          Email:
-          <input
-            type="email"
-            value={email}
-            onChange={handleChange}
-            placeholder="Enter your email"
-          />
-        </label>
-        {/* Display validation message */}
-        {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
-      </form>
+    <div className={isDarkMode ? "dark-mode" : "light-mode"}>
+      <h1>{isDarkMode ? "Dark Mode" : "Light Mode"}</h1>
+      {/* Toggle switch */}
+      <button onClick={toggleTheme}>
+        {isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+      </button>
     </div>
   );
-}
+};
 
-export default EmailForm;
+export default ThemeToggle;
