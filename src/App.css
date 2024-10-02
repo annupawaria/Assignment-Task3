@@ -1,20 +1,49 @@
-/* Light mode styles */
-.light{
-  background-color: white;
-  color: black;
-  transition: background-color 0.5s, color 0.5s;
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 18px;
+  text-align: left;
 }
 
-/* Dark mode styles */
-.dark{
-  background-color: black;
+.table th, .table td {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+}
+
+.table th {
+  background-color: #f2f2f2;
+}
+.table th{
+  background-color: grey;
+}
+
+.table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.pagination button {
+  background-color: #4CAF50;
   color: white;
-  transition: background-color 0.5s, color 0.5s;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 5px;
+  cursor: pointer;
+  border-radius: 5px;
 }
 
-/* Style the button (optional) */
-button {
-  padding: 10px 20px;
-  margin-top: 20px;
-  cursor: pointer;
+.pagination button:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
 }
+.pagination button.active {
+  background-color: #008CBA; /* Change to your preferred color */
+  color: white;
+}
+ 
