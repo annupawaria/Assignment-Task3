@@ -11,12 +11,7 @@
   border: 1px solid #ddd;
 }
 
-.table th {
-  background-color: #f2f2f2;
-}
-.table th{
-  background-color: grey;
-}
+
 
 .table tr:nth-child(even) {
   background-color: #f9f9f9;
